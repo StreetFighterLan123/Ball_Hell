@@ -32,8 +32,10 @@ pygame.init()
 screen = pygame.display.set_mode((800, 600))
 background = pygame.image.load('hell.png')
 
+
+
 pygame.display.set_caption("Ball Hell")
-pygame.display.set_icon(pygame.image.load('ball.png'))
+pygame.display.set_icon(pygame.image.load('hell.png'))
 
 # Character
 orig_Img = pygame.image.load('player.png')
