@@ -28,11 +28,15 @@ def colorize(image, newColor):
     return image
 
 
+# Line for end game thing.
+def line(x):
+    for x in range(0, x):
+        print("                                ")
+
+
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
 background = pygame.image.load('hell.png')
-
-
 
 pygame.display.set_caption("Ball Hell")
 pygame.display.set_icon(pygame.image.load('hell.png'))
@@ -89,14 +93,13 @@ def score_disp():
     screen.blit(score_text, (355, 50))
 
 
-#Fix this later! Use the bad one I wrote before for now...or forever...
+# Fix this later! Use the bad one I wrote before for now...or forever...
 def is_collided_with(sprite_one, sprite_two):
     return sprite_one.rect.colliderect(sprite_two.rect)
 
 
 pygame.mixer.music.load("adventure.wav")
 pygame.mixer.music.play(-1)
-
 
 running = True
 
@@ -137,6 +140,8 @@ while running:
             score += 0.1
         if abs(ballX[i] - playerX) < 15 and abs(ballY[i] - playerY) < 70:
             running = False
+            line(10)
+            print(f'Your score was: {round(score)}')
             break
             sys.exit()
     if playerX < 0:
@@ -147,5 +152,5 @@ while running:
     score_disp()
     player(playerX, playerY)
     clock.tick(30)
-    print(playerX)
+    # print(playerX) for development
     pygame.display.update()
