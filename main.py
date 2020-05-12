@@ -138,7 +138,7 @@ while running:
             ballX[i] = random.randint(0, 775)
             ballY_vel[i] += 0.25
             score += 0.1
-        if abs(ballX[i] - playerX) < 15 and abs(ballY[i] - playerY) < 70:
+        if abs(ballX[i] - playerX) < 20 and abs(ballY[i] - playerY) < 70:
             running = False
             line(10)
             print(f'Your score was: {round(score)}')
