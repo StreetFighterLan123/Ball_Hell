@@ -104,12 +104,15 @@ def is_collided_with(sprite_one, sprite_two):
 pygame.mixer.music.load("adventure.wav")
 pygame.mixer.music.play(-1)
 
+#Boop sound
+boop_sound = pygame.mixer.Sound('boop.wav')
+
 running = True
 
 # Achievement Variables and Font
 ten_once = True
 ten_count = 0
-
+ten_sound = True
 achieve_font = pygame.font.Font('freesansbold.ttf', 18)
 
 x_vel_base = 25
@@ -160,9 +163,12 @@ while running:
 
     #Check for achievements.
     if round(score) >= 10 and ten_once and ten_count < 100:
-        achieve_text = achieve_font.render('Noob: Get 10 points', True, (255, 192, 203))
+        achieve_text = achieve_font.render('Noob: Get 10 points', True, (127, 255, 212))
         screen.blit(achieve_text, (100, 10))
         ten_count += 1
+        if ten_sound:
+            pygame.mixer.Sound.play(boop_sound)
+            ten_sound = False
 
 
     score_disp()
