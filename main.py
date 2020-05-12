@@ -118,6 +118,10 @@ thirty_once = True
 thirty_count = 0
 thirty_sound = True
 
+fifty_once = True
+fifty_count = 0
+fifty_sound = True
+
 # Keep the achieve font the same for everything! Because all the achievements are going to be the same size and place.
 achieve_font = pygame.font.Font('freesansbold.ttf', 18)
 
@@ -180,7 +184,13 @@ while running:
         screen.blit(achieve_text, (100, 10))
         if thirty_sound:
             pygame.mixer.Sound.play(boop_sound)
-            ten_sound = False
+            thirty_sound = False
+    if round(score) >= 50 and fifty_once and fifty_count < 100:
+        achieve_text = achieve_font.render("Pro: You're amazing.", True, (127, 255, 212))
+        screen.blit(achieve_text, (100, 10))
+        if fifty_sound:
+            pygame.mixer.Sound.play(boop_sound)
+            fifty_sound = False
 
     score_disp()
     player(playerX, playerY)
