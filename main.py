@@ -140,7 +140,7 @@ while running:
             score += 0.1
         if abs(ballX[i] - playerX) < 20 and abs(ballY[i] - playerY) < 70:
             running = False
-            line(10)
+            line(50)
             print(f'Your score was: {round(score)}')
             break
             sys.exit()
