@@ -166,6 +166,7 @@ x_vel_base = 25
 while running:
     if round(score) > high_score:
         save_high_score(round(score))
+        high_score = get_high_score()
     playerX_vel = 0
     playerY_vel = 0
     screen.fill((0, 0, 0))
