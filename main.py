@@ -190,25 +190,28 @@ while running:
     for i in range(num_of_balls):
         ballY[i] += ballY_vel[i]
         ball(ballX[i], ballY[i], i)
-        # if collision:
-        #    running = False
-        #    sys.exit()
+        #Ball reset
         if ballY[i] > 660:
             ball_thing()
             ballY[i] = 10
             ballX[i] = random.randint(0, 775)
             ballY_vel[i] += 0.25
             score += 0.1
+        #Better distance formula because of the more customization...maybe change it with
+        #collidirect later because it is kinda bad.
         if abs(ballX[i] - playerX) < 20 and abs(ballY[i] - playerY) < 70:
             running = False
             break
             sys.exit()
+            #Putting some space between the welcome to pygame.
             line(50)
+            #Prints your score, and, if you beat the local high score, it prints a little message for you!
             print(f'Your score was: {round(score)}')
             if round(score) > high_score:
                 time.sleep(1)
                 print(f'You beat the high score! The new high score is {high_score}')
 
+    #Boundaries
     if playerX < 0:
         playerX = 0
     if playerX > 738:
