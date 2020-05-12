@@ -102,7 +102,7 @@ num_of_balls = 10
 def ball_thing():
     for i in range(num_of_balls):
         ballImg.append(pygame.image.load('ball.png'))
-        ballX.append(random.randint(0, 775))
+        ballX.append(random.randint(0, 780))
         ballY.append(20)
         ballY_vel.append(10)
 
@@ -194,7 +194,7 @@ while running:
         if ballY[i] > 660:
             ball_thing()
             ballY[i] = 10
-            ballX[i] = random.randint(0, 775)
+            ballX[i] = random.randint(0, 780)
             ballY_vel[i] += 0.25
             score += 0.1
         #Better distance formula because of the more customization...maybe change it with
@@ -225,21 +225,21 @@ while running:
             pygame.mixer.Sound.play(boop_sound)
             ten_sound = False
     if round(score) >= 30 and thirty_once and thirty_count < 100:
-        achieve_text = achieve_font.render('Decent: Nice, keep going!', True, (127, 255, 212))
+        achieve_text = achieve_font.render('Regular: Get 30 points', True, (127, 255, 212))
         screen.blit(achieve_text, (100, 10))
         thirty_count += 1
         if thirty_sound:
             pygame.mixer.Sound.play(boop_sound)
             thirty_sound = False
     if round(score) >= 50 and fifty_once and fifty_count < 100:
-        achieve_text = achieve_font.render("Pro: You're amazing.", True, (127, 255, 212))
+        achieve_text = achieve_font.render("Pro: Get 50 points", True, (127, 255, 212))
         screen.blit(achieve_text, (100, 10))
         fifty_count += 1
         if fifty_sound:
             pygame.mixer.Sound.play(boop_sound)
             fifty_sound = False
     if round(score) >= 100 and hundred_once and hundred_count < 100:
-        achieve_text = achieve_font.render("Hacker: You've somehow hacked the game!", True, (127, 255, 212))
+        achieve_text = achieve_font.render("Hacker: Get 100 points", True, (127, 255, 212))
         screen.blit(achieve_text, (100, 10))
         hundred_count += 1
         if hundred_sound:
