@@ -10,6 +10,7 @@ import math
 clock = pygame.time.Clock()
 
 
+# I didn't make the function before because I didn't know the pygame BLEND function.
 def colorize(image, newColor):
     """
     Create a "colorized" copy of a surface (replaces RGB values with the given color, preserving the per-pixel alphas of
@@ -28,12 +29,13 @@ def colorize(image, newColor):
     return image
 
 
-# Line for end game thing.
+# Line for the end of the game.
 def line(x):
     for x in range(0, x):
         print("                                ")
 
 
+# The background is the same as the icon, looks cool, maybe change it later idk.
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
 background = pygame.image.load('hell.png')
@@ -48,7 +50,7 @@ playerImg = pygame.transform.scale(orig_Img, (30, 30))
 playerX = 380
 playerY = 530
 playerX_vel = 0
-playerY_vel = 0
+playerY_vel = 0  # Keep the Y_vel just in case.
 
 
 def player(x, y):
@@ -89,7 +91,7 @@ font = pygame.font.Font('freesansbold.ttf', 32)
 
 
 def score_disp():
-    score_text = font.render((f'Score: {round(score)}'), True, (255, 192, 203))
+    score_text = font.render(f'Score: {round(score)}', True, (255, 192, 203))
     screen.blit(score_text, (355, 50))
 
 
@@ -98,10 +100,17 @@ def is_collided_with(sprite_one, sprite_two):
     return sprite_one.rect.colliderect(sprite_two.rect)
 
 
+# Music that I stole.
 pygame.mixer.music.load("adventure.wav")
 pygame.mixer.music.play(-1)
 
 running = True
+
+# Achievement Variables and Font
+ten_once = True
+ten_count = 0
+
+achieve_font = pygame.font.Font('freesansbold.ttf', 18)
 
 x_vel_base = 25
 while running:
@@ -148,6 +157,13 @@ while running:
         playerX = 0
     if playerX > 738:
         playerX = 738
+
+    #Check for achievements.
+    if round(score) >= 10 and ten_once and ten_count < 100:
+        achieve_text = achieve_font.render('Noob: Get 10 points', True, (255, 192, 203))
+        screen.blit(achieve_text, (100, 10))
+        ten_count += 1
+
 
     score_disp()
     player(playerX, playerY)
