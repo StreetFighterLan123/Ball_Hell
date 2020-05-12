@@ -1,11 +1,9 @@
-import pygame, time, os, sys, random, math, shelve
+import pygame, time, os, sys, random, math
 
 
 # For FPS
 
 clock = pygame.time.Clock()
-
-#Base Shelve
 
 
 
@@ -121,6 +119,10 @@ fifty_once = True
 fifty_count = 0
 fifty_sound = True
 
+hundred_once = True
+hundred_count = 0
+hundred_sound = True
+
 # Keep the achieve font the same for everything! Because all the achievements are going to be the same size and place.
 achieve_font = pygame.font.Font('freesansbold.ttf', 18)
 
@@ -192,7 +194,13 @@ while running:
         if fifty_sound:
             pygame.mixer.Sound.play(boop_sound)
             fifty_sound = False
-
+    if round(score) >= 100 and hundred_once and hundred_count < 100:
+        achieve_text = achieve_font.render("Hacker: You've somehow hacked the game!", True, (127, 255, 212))
+        screen.blit(achieve_text, (100, 10))
+        hundred_count += 1
+        if hundred_sound:
+            pygame.mixer.Sound.play(boop_sound)
+            hundred_sound = False
     score_disp()
     player(playerX, playerY)
     clock.tick(30)
