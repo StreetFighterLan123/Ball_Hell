@@ -201,10 +201,14 @@ while running:
             score += 0.1
         if abs(ballX[i] - playerX) < 20 and abs(ballY[i] - playerY) < 70:
             running = False
-            line(50)
-            print(f'Your score was: {round(score)}')
             break
             sys.exit()
+            line(50)
+            print(f'Your score was: {round(score)}')
+            if round(score) > high_score:
+                time.sleep(1)
+                print(f'You beat the high score! The new high score is {high_score}')
+
     if playerX < 0:
         playerX = 0
     if playerX > 738:
