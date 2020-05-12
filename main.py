@@ -92,7 +92,7 @@ font = pygame.font.Font('freesansbold.ttf', 32)
 
 def score_disp():
     score_text = font.render(f'Score: {round(score)}', True, (255, 192, 203))
-    screen.blit(score_text, (355, 50))
+    screen.blit(score_text, (350, 50))
 
 
 # Fix this later! Use the bad one I wrote before for now...or forever...
@@ -104,7 +104,7 @@ def is_collided_with(sprite_one, sprite_two):
 pygame.mixer.music.load("adventure.wav")
 pygame.mixer.music.play(-1)
 
-#Boop sound
+# Boop sound
 boop_sound = pygame.mixer.Sound('boop.wav')
 
 running = True
@@ -113,6 +113,12 @@ running = True
 ten_once = True
 ten_count = 0
 ten_sound = True
+
+thirty_once = True
+thirty_count = 0
+thirty_sound = True
+
+# Keep the achieve font the same for everything! Because all the achievements are going to be the same size and place.
 achieve_font = pygame.font.Font('freesansbold.ttf', 18)
 
 x_vel_base = 25
@@ -161,7 +167,7 @@ while running:
     if playerX > 738:
         playerX = 738
 
-    #Check for achievements.
+    # Check for achievements.
     if round(score) >= 10 and ten_once and ten_count < 100:
         achieve_text = achieve_font.render('Noob: Get 10 points', True, (127, 255, 212))
         screen.blit(achieve_text, (100, 10))
@@ -169,7 +175,12 @@ while running:
         if ten_sound:
             pygame.mixer.Sound.play(boop_sound)
             ten_sound = False
-
+    if round(score) >= 30 and thirty_once and thirty_count < 100:
+        achieve_text = achieve_font.render('Decent: Nice, keep going!', True, (127, 255, 212))
+        screen.blit(achieve_text, (100, 10))
+        if thirty_sound:
+            pygame.mixer.Sound.play(boop_sound)
+            ten_sound = False
 
     score_disp()
     player(playerX, playerY)
