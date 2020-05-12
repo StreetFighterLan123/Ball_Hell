@@ -1,11 +1,56 @@
 import pygame, time, os, sys, random, math
 
+# The background is the same as the icon, looks cool, maybe change it later idk.
+pygame.init()
+screen = pygame.display.set_mode((800, 600))
+background = pygame.image.load('hell.png')
 
+pygame.display.set_caption("Ball Hell")
+pygame.display.set_icon(pygame.image.load('hell.png'))
 # For FPS
 
 clock = pygame.time.Clock()
 
 
+def get_high_score():
+    # Default high score
+    high_score = 0
+
+    # Try to read the high score from a file
+    try:
+        high_score_file = open("high_score.txt", "r")
+        high_score = int(high_score_file.read())
+        high_score_file.close()
+        print("The high score is", high_score)
+    except IOError:
+        # Error reading file, no high score
+        print("There is no high score yet.")
+    except ValueError:
+        # There's a file there, but we don't understand the number.
+        print("I'm confused. Starting with no high score.")
+
+    return high_score
+
+
+def save_high_score(new_score):
+    try:
+        # Write the file to disk
+        high_score_file = open("high_score.txt", "w")
+        high_score_file.write(str(new_score))
+        high_score_file.close()
+    except IOError:
+        # Hm, can't write it.
+        print("Unable to save the high score.")
+
+
+high_score = get_high_score()
+high_score_font = pygame.font.Font('freesansbold.ttf', 24)
+
+def high_score_show():
+    global high_score
+    global high_score_font
+    high_score_text = high_score_font.render(f'High Score: {str(high_score)}', True, (255, 192, 203))
+    screen.blit(high_score_text, (340, 100))
 
 # I didn't make the function before because I didn't know the pygame BLEND function.
 def colorize(image, newColor):
@@ -30,15 +75,6 @@ def colorize(image, newColor):
 def line(x):
     for x in range(0, x):
         print("                                ")
-
-
-# The background is the same as the icon, looks cool, maybe change it later idk.
-pygame.init()
-screen = pygame.display.set_mode((800, 600))
-background = pygame.image.load('hell.png')
-
-pygame.display.set_caption("Ball Hell")
-pygame.display.set_icon(pygame.image.load('hell.png'))
 
 # Character
 orig_Img = pygame.image.load('player.png')
@@ -128,6 +164,8 @@ achieve_font = pygame.font.Font('freesansbold.ttf', 18)
 
 x_vel_base = 25
 while running:
+    if round(score) > high_score:
+        save_high_score(round(score))
     playerX_vel = 0
     playerY_vel = 0
     screen.fill((0, 0, 0))
@@ -202,6 +240,7 @@ while running:
             pygame.mixer.Sound.play(boop_sound)
             hundred_sound = False
     score_disp()
+    high_score_show()
     player(playerX, playerY)
     clock.tick(30)
     # print(playerX) for development
