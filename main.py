@@ -201,15 +201,14 @@ while running:
         #collidirect later because it is kinda bad.
         if abs(ballX[i] - playerX) < 20 and abs(ballY[i] - playerY) < 70:
             running = False
-            break
-            sys.exit()
             #Putting some space between the welcome to pygame.
             line(50)
             #Prints your score, and, if you beat the local high score, it prints a little message for you!
             print(f'Your score was: {round(score)}')
             if round(score) > high_score:
-                time.sleep(1)
-                print(f'You beat the high score! The new high score is {high_score}')
+                print(f'You beat the high score! The new high score is {round(score)}')
+            break
+            sys.exit()
 
     #Boundaries
     if playerX < 0:
