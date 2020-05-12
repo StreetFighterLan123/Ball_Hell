@@ -1,5 +1,11 @@
 Ideas:
 
+To Do:
+1. High Score.
+    A. Use shelf.
+
+
+Finished:
 1. Add Achievements that pop up as text and then go away after a while.
 	A. Make them go away by having a counter increment by 1,
 	and when it is more than a certain amount it goes away.
