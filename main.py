@@ -1,13 +1,12 @@
-import pygame
-import time
-import os
-import sys
-import random
-import math
+import pygame, time, os, sys, random, math, shelve
+
 
 # For FPS
 
 clock = pygame.time.Clock()
+
+#Base Shelve
+
 
 
 # I didn't make the function before because I didn't know the pygame BLEND function.
@@ -182,12 +181,14 @@ while running:
     if round(score) >= 30 and thirty_once and thirty_count < 100:
         achieve_text = achieve_font.render('Decent: Nice, keep going!', True, (127, 255, 212))
         screen.blit(achieve_text, (100, 10))
+        thirty_count += 1
         if thirty_sound:
             pygame.mixer.Sound.play(boop_sound)
             thirty_sound = False
     if round(score) >= 50 and fifty_once and fifty_count < 100:
         achieve_text = achieve_font.render("Pro: You're amazing.", True, (127, 255, 212))
         screen.blit(achieve_text, (100, 10))
+        fifty_count += 1
         if fifty_sound:
             pygame.mixer.Sound.play(boop_sound)
             fifty_sound = False
