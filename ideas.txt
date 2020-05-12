@@ -3,6 +3,7 @@ Ideas:
 To Do:
 1. High Score.
     A. Use shelf.
+        1. Print the High Score to the terminal at the end, maybe print it above the score in the game? Idk.
 
 
 Finished:
