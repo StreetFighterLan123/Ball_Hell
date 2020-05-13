@@ -239,7 +239,7 @@ while running:
             pygame.mixer.Sound.play(boop_sound)
             ten_sound = False
     if round(score) >= 30 and thirty_once and thirty_count < 125:
-        achieve_text = achieve_font.render('Regular: Get 30 points', True, (127, 255, 212))
+        achieve_text = achieve_font.render('Decent: Get 30 points', True, (127, 255, 212))
         screen.blit(achieve_text, (100, 10))
         thirty_count += 1
         if thirty_sound:
