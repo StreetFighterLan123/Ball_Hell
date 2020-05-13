@@ -195,7 +195,7 @@ while running:
         high_score = get_high_score()
         if hs_once and hs_count < 125:
             bruh_text = achieve_two_font.render('High Scorer: Beat the local high score', True, (128, 255, 212))
-            screen.blit(bruh_text, (100, 40))
+            screen.blit(bruh_text, (15, 50))
             hs_count += 1
             if hs_sound:
                 pygame.mixer.Sound.play(boop_sound_two)
