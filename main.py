@@ -139,7 +139,7 @@ pygame.mixer.music.play(-1)
 
 # Boop sound
 boop_sound = pygame.mixer.Sound('boop.wav')
-
+boop_sound_two = pygame.mixer.Sound('boop.wav')
 running = True
 
 # Achievement Variables and Font
@@ -159,14 +159,16 @@ hundred_once = True
 hundred_count = 0
 hundred_sound = True
 
+hs_once = True
+hs_count = 0
+hs_sound = True
+
 # Keep the achieve font the same for everything! Because all the achievements are going to be the same size and place.
 achieve_font = pygame.font.Font('freesansbold.ttf', 18)
+achieve_two_font = pygame.font.Font('freesansbold.ttf', 18)
 
 x_vel_base = 25
 while running:
-    if round(score) > high_score:
-        save_high_score(round(score))
-        high_score = get_high_score()
     playerX_vel = 0
     playerY_vel = 0
     screen.fill((0, 0, 0))
@@ -187,6 +189,17 @@ while running:
 
     playerX -= playerX_vel
     playerY -= playerY_vel
+
+    if round(score) >= high_score:
+        save_high_score(round(score))
+        high_score = get_high_score()
+        if hs_once and hs_count < 125:
+            bruh_text = achieve_two_font.render('High Scorer: Beat the local high score', True, (128, 255, 212))
+            screen.blit(bruh_text, (100, 40))
+            hs_count += 1
+            if hs_sound:
+                pygame.mixer.Sound.play(boop_sound_two)
+                hs_sound = False
 
     for i in range(num_of_balls):
         ballY[i] += ballY_vel[i]
@@ -218,28 +231,28 @@ while running:
         playerX = 738
 
     # Check for achievements.
-    if round(score) >= 10 and ten_once and ten_count < 100:
+    if round(score) >= 10 and ten_once and ten_count < 125:
         achieve_text = achieve_font.render('Noob: Get 10 points', True, (127, 255, 212))
         screen.blit(achieve_text, (100, 10))
         ten_count += 1
         if ten_sound:
             pygame.mixer.Sound.play(boop_sound)
             ten_sound = False
-    if round(score) >= 30 and thirty_once and thirty_count < 100:
+    if round(score) >= 30 and thirty_once and thirty_count < 125:
         achieve_text = achieve_font.render('Regular: Get 30 points', True, (127, 255, 212))
         screen.blit(achieve_text, (100, 10))
         thirty_count += 1
         if thirty_sound:
             pygame.mixer.Sound.play(boop_sound)
             thirty_sound = False
-    if round(score) >= 50 and fifty_once and fifty_count < 100:
+    if round(score) >= 50 and fifty_once and fifty_count < 125:
         achieve_text = achieve_font.render("Pro: Get 50 points", True, (127, 255, 212))
         screen.blit(achieve_text, (100, 10))
         fifty_count += 1
         if fifty_sound:
             pygame.mixer.Sound.play(boop_sound)
             fifty_sound = False
-    if round(score) >= 100 and hundred_once and hundred_count < 100:
+    if round(score) >= 100 and hundred_once and hundred_count < 125:
         achieve_text = achieve_font.render("Hacker: Get 100 points", True, (127, 255, 212))
         screen.blit(achieve_text, (100, 10))
         hundred_count += 1
