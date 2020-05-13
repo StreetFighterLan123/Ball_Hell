@@ -1,8 +1,8 @@
 Ideas:
 
 To Do:
-
-None for now.
+1. Difficulty
+    A. Make it so that in the terminal it asks you what difficulty you want!
 
 Finished:
 1. Add Achievements that pop up as text and then go away after a while.
