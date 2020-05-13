@@ -21,7 +21,7 @@ def get_high_score():
         high_score_file = open("high_score.txt", "r")
         high_score = int(high_score_file.read())
         high_score_file.close()
-        print("The high score is", high_score)
+        
     except IOError:
         # Error reading file, no high score
         print("There is no high score yet.")
