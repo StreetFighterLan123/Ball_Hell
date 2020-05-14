@@ -5,8 +5,11 @@ pygame.init()
 screen = pygame.display.set_mode((800, 600))
 background = pygame.image.load('hell.png')
 
+#Game is called ball hell
 pygame.display.set_caption("Ball Hell")
 pygame.display.set_icon(pygame.image.load('hell.png'))
+
+
 # For FPS
 
 clock = pygame.time.Clock()
@@ -121,12 +124,15 @@ def ball(x, y, i):
 score = 0
 
 font = pygame.font.Font('freesansbold.ttf', 32)
-
+fps_font = pygame.font.Font('freesansbold.ttf', 16)
 
 def score_disp():
     score_text = font.render(f'Score: {round(score)}', True, (255, 192, 203))
     screen.blit(score_text, (350, 50))
 
+def fps_disp():
+    fps_text = fps_font.render("FPS: 30", True, (255, 192, 203))
+    screen.blit(fps_text, (730, 25))
 
 # Fix this later! Use the bad one I wrote before for now...or forever...
 def is_collided_with(sprite_one, sprite_two):
@@ -260,6 +266,7 @@ while running:
             pygame.mixer.Sound.play(boop_sound)
             hundred_sound = False
     score_disp()
+    fps_disp()
     high_score_show()
     player(playerX, playerY)
     clock.tick(30)
